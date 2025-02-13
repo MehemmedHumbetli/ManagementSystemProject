@@ -1,9 +1,20 @@
+using Application;
+using Dal.SqlServer.Context;
+using DAL.SqlServer;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddSqlServerServices(conn);
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

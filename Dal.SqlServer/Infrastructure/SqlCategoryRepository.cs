@@ -11,10 +11,11 @@ namespace Dal.SqlServer.Infrastructure
         public async Task AddAsync(Category category)
         {
             var sql = @"Insert INTO Categories([Name],[CreatedBy])
-                        VALUES (@Name, @CreatedBy)";
+                        VALUES (@Name, @CreatedBy); SELECT SCOPE_IDENTITY()";
             using var conn = OpenConnection();
-            await conn.QueryAsync(sql, category);
-        }
+            var generatedId = await conn.ExecuteScalarAsync<int>(sql,category);
+            category.Id = generatedId;
+}
 
         public bool Delete(int id, int deletedBy)
         {

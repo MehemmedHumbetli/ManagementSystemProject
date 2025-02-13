@@ -5,7 +5,7 @@ using Repository.Repositories;
 
 namespace Dal.SqlServer.UnitOfWork
 {
-    public class SqlUnitOfWork(string connectionString, AppDbContext context) : IUnityOfWork
+    public class SqlUnitOfWork(string connectionString, AppDbContext context) : IUnitOfWork
     {
         private readonly string _connectionString = connectionString;
         private readonly AppDbContext _context = context;
