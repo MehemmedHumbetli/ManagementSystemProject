@@ -1,4 +1,5 @@
 ﻿using Application.CQRS.Categories.Commands.Requests;
+using Application.CQRS.Categories.Queries.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,5 +16,13 @@ namespace ManagementSystem.Api.Controllers
         {
             return Ok(await _sender.Send(request));
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var request = new GetByIdCategoryRequest { Id = id };
+            return Ok(await _sender.Send(request));
+        }
+
     }
 }

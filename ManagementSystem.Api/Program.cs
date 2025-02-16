@@ -1,6 +1,7 @@
 using Application;
 using Dal.SqlServer.Context;
 using DAL.SqlServer;
+using ManagementSystem.Api.Infastructure.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -30,4 +31,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.Run();

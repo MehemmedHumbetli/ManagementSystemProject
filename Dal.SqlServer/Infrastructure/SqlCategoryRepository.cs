@@ -10,6 +10,7 @@ namespace Dal.SqlServer.Infrastructure
         private readonly AppDbContext _context = context;
         public async Task AddAsync(Category category)
         {
+
             var sql = @"Insert INTO Categories([Name],[CreatedBy])
                         VALUES (@Name, @CreatedBy); SELECT SCOPE_IDENTITY()";
             using var conn = OpenConnection();
@@ -49,7 +50,7 @@ namespace Dal.SqlServer.Infrastructure
                         FROM Categories AS C
                         WHERE C.Id = @id AND C.IsDeleted = 0";
             using var conn = OpenConnection();
-            return await conn.QueryFirstOrDefaultAsync<Category>(sql,id);
+            return await conn.QueryFirstOrDefaultAsync<Category>(sql, new {id});
         }
 
         public void Update(Category category)
