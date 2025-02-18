@@ -4,5 +4,6 @@ namespace Repository.Common;
 
 public interface IUnitOfWork
 {
-    ICategoryRepository CategoryRepository { get; }
+    public ICategoryRepository CategoryRepository { get; }
+    public IUserRepository UserRepository { get; }
 }

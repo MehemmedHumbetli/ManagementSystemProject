@@ -11,7 +11,10 @@ namespace Dal.SqlServer.UnitOfWork
         private readonly AppDbContext _context = context;
 
         public SqlCategoryRepository categoryRepository;
+        public SqlUserRepository userRepository;
 
         public ICategoryRepository CategoryRepository => categoryRepository ?? new SqlCategoryRepository(_connectionString,_context);
+
+        public IUserRepository UserRepository => userRepository ?? new SqlUserRepository(_context);
     }
 }
