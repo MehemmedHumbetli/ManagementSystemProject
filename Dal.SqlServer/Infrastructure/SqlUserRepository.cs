@@ -33,6 +33,7 @@ namespace Dal.SqlServer.Infrastructure
         public async Task RegisterAsync(User user)
         {
             await _appDbContext.Users.AddAsync(user);
+            await _appDbContext.SaveChangesAsync();
         }
 
         public async Task Remove(int id)
